@@ -1,0 +1,15 @@
+acteur_lister:
+    path: /acteur
+    defaults: { _controller: AppBundle:Acteur:lister }
+
+acteur_ajouter:
+    path: /acteur/ajouter
+    defaults: { _controller: AppBundle:Acteur:editer }
+
+acteur_modifier:
+    path: /acteur/modifier/{id}
+    defaults: { _controller: AppBundle:Acteur:editer }
+
+acteur_supprimer:
+    path: /acteur/supprimer/{id}
+    defaults: { _controller: AppBundle:Acteur:supprimer }
