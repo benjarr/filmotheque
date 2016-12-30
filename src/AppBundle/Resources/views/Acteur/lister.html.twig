@@ -4,7 +4,42 @@
 
 {% block body %}
 
-    {% include 'AppBundle:Acteur:liste.html.twig' with {'acteurs': acteurs} %}
+    <form id="form_recherche" action="{{ path('acteur_rechercher') }}" method="post">
+        <div class="col-md-10" style="margin-top: -15px;">
+            {{ form_widget(form) }}
+        </div>
+
+        <input class="btn btn-primary" type="submit" value="Rechercher">
+        <img class="loading" src="{{ asset('img/ajax-loader.gif') }}" style="display: none">
+    </form>
+
+    <div id="resultats_recherche">
+        {% include 'AppBundle:Acteur:liste.html.twig' with {'acteurs': acteurs} %}
+    </div>
+
     <p><a href="{{ path('acteur_ajouter') }}">Ajouter un acteur</a></p>
+
+    {% block javaScript %}
+    {{ parent() }}
+    <script>
+//        $(".loading").hide() ;
+        $("#form_recherche").submit(function (e) {
+            e.preventDefault() ;
+            $(".loading").show() ;
+            var motcle = $("#acteurrecherche_motcle").val() ;
+            var DATA = 'motcle=' + motcle ;
+            $.ajax({
+                type: "POST",
+                url: "{{ path('acteur_rechercher') }}",
+                data: DATA,
+                cache: false,
+                success: function (data) {
+                    $('#resultats_recherche').html(data) ;
+                    $('.loading').hide() ;
+                }
+            }) ;
+        }) ;
+    </script>
+    {% endblock %}
 
 {% endblock %}

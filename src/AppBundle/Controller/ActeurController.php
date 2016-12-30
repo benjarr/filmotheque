@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Acteur;
+use AppBundle\Form\ActeurRechercheType;
 use AppBundle\Form\ActeurType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,12 +13,36 @@ class ActeurController extends Controller
 {
     public function listerAction()
     {
-        $em = $this->getDoctrine()->getManager() ;
+        $em      = $this->getDoctrine()->getManager() ;
         $acteurs = $em->getRepository('AppBundle:Acteur')->findAll() ;
+
+        $form = $this->createForm(ActeurRechercheType::class) ;
 
         return $this->render('AppBundle:Acteur:lister.html.twig', array(
             'acteurs' => $acteurs,
+            'form'    => $form->createView(),
         )) ;
+    }
+
+    public function rechercherAction(Request $request)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $motcle = $request->request->get('motcle') ;
+            $em     = $this->getDoctrine()->getManager() ;
+
+            if ($motcle != '') {
+                $acteurs = $em->getRepository('AppBundle:Acteur')->rechercheActeur($motcle) ;
+            }
+            else {
+                $acteurs = $em->getRepository('AppBundle:Acteur')->findAll() ;
+            }
+
+            return $this->render('AppBundle:Acteur:liste.html.twig', array(
+                'acteurs' => $acteurs,
+            )) ;
+        }
+
+        return $this->listerAction() ;
     }
 
     public function editerAction($id = null, Request $request)

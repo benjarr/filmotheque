@@ -15,6 +15,11 @@ acteur_supprimer:
     path: /acteur/supprimer/{id}
     defaults: { _controller: AppBundle:Acteur:supprimer }
 
+acteur_rechercher:
+    path: /acteur/rechercher
+    defaults: { _controller: AppBundle:Acteur:rechercher }
+    methods: [POST]
+
 
 # FILM #
 film_lister:

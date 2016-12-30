@@ -22,4 +22,16 @@ class ActeurRepository extends EntityRepository
             ->getResult()
         ;
     }
+
+    public function rechercheActeur($motcle)
+    {
+        return $this
+            ->createQueryBuilder('a')
+            ->where('a.nom LIKE :motcle OR a.prenom LIKE :motcle')
+            ->orderBy('a.nom', 'ASC')
+            ->setParameter('motcle', '%'.$motcle.'%')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }
