@@ -38,7 +38,7 @@ class Acteur
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateNaissance", type="date")
+     * @ORM\Column(name="dateNaissance", type="datetime")
      */
     private $dateNaissance;
 
@@ -154,6 +154,11 @@ class Acteur
     public function getSexe()
     {
         return $this->sexe;
+    }
+
+    public function getPrenomNom()
+    {
+        return $this->prenom . ' ' . $this->nom ;
     }
 }
 

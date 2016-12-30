@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des categories{% endblock %}
+
+{% block body %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th><i class="fa fa-openid"></i> Id</th>
+                <th><i class="fa fa-file-text"></i> Categore</th>
+                <th><i class="fa fa-wrench"></i> Actions</th>
+            </tr>
+        </thead>
+        {% for categorie in categories %}
+        <tbody>
+            <tr>
+                <td>{{ categorie.id }}</td>
+                <td>{{ categorie.nom }}</td>
+                <td>
+                    <a href="{{ path('categorie_modifier', {'id': categorie.id}) }}"><i class="fa fa-edit" style="color: dimgrey;"></i></a>
+                    <a href="{{ path('categorie_supprimer', {'id': categorie.id}) }}"><i class="fa fa-trash" style="color: dimgrey;"></i></a>
+                </td>
+            </tr>
+        </tbody>
+        {% else %}
+            <tr>
+                <td>Aucune categorie n'a été trouvée.</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <p><a href="{{ path('categorie_ajouter') }}">Ajouter une categorie</a></p>
+{% endblock %}

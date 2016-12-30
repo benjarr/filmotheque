@@ -1,3 +1,4 @@
+# ACTEUR #
 acteur_lister:
     path: /acteur
     defaults: { _controller: AppBundle:Acteur:lister }
@@ -13,3 +14,39 @@ acteur_modifier:
 acteur_supprimer:
     path: /acteur/supprimer/{id}
     defaults: { _controller: AppBundle:Acteur:supprimer }
+
+
+# FILM #
+film_lister:
+    path: /film
+    defaults: { _controller: AppBundle:Film:lister }
+
+film_ajouter:
+    path: /film/ajouter
+    defaults: { _controller: AppBundle:Film:editer }
+
+film_modifier:
+    path: /film/modifier/{id}
+    defaults: { _controller: AppBundle:Film:editer }
+
+film_supprimer:
+    path: /film/supprimer/{id}
+    defaults: { _controller: AppBundle:Film:supprimer }
+
+
+# CATEGORIE #
+categorie_lister:
+    path: /categorie
+    defaults: { _controller: AppBundle:Categorie:lister }
+
+categorie_ajouter:
+    path: /categorie/ajouter
+    defaults: { _controller: AppBundle:Categorie:editer }
+
+categorie_modifier:
+    path: /categorie/modifier/{id}
+    defaults: { _controller: AppBundle:Categorie:editer }
+
+categorie_supprimer:
+    path: /categorie/supprimer/{id}
+    defaults: { _controller: AppBundle:Categorie:supprimer }

@@ -44,8 +44,8 @@
                     <li {% if app.request.attributes.get('_route') == 'homepage' %}class="active"{% endif %}>
                         <a href="{{ path('homepage') }}">Accueil</a>
                     </li>
-                    <li>
-                        <a href="#">Films</a>
+                    <li {% if app.request.attributes.get('_route') == 'film_lister' %}class="active"{% endif %}>
+                        <a href="{{ path('film_lister') }}">Films</a>
                     </li>
                     <li {% if app.request.attributes.get('_route') == 'acteur_lister' %}class="active"{% endif %}>
                         <a href="{{ path('acteur_lister') }}">Acteurs</a>
