@@ -3,37 +3,8 @@
 {% block title %}Liste des films{% endblock %}
 
 {% block body %}
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th><i class="fa fa-file-movie-o"></i> Film</th>
-                <th><i class="fa fa-tags"></i> Categorie</th>
-                <th><i class="fa fa-users"></i> Acteurs</th>
-                <th><i class="fa fa-wrench"></i> Actions</th>
-            </tr>
-        </thead>
-        {% for film in films %}
-        <tbody>
-            <tr>
-                <td>{{ film.titre }}</td>
-                <td>{{ film.categorie.nom }}</td>
-                <td>
-                    {% for acteur in film.acteurs %}
-                        {{ acteur.prenomNom }}{% if not loop.last %}, {% endif %}
-                    {% endfor %}
-                </td>
-                <td>
-                    <a href="{{ path('film_modifier', {'id': film.id}) }}"><i class="fa fa-edit" style="color: dimgrey;"></i></a>
-                    <a href="{{ path('film_supprimer', {'id': film.id}) }}"><i class="fa fa-trash" style="color: dimgrey;"></i></a>
-                </td>
-            </tr>
-        </tbody>
-        {% else %}
-            <tr>
-                <td>Aucun film n'a été trouvé.</td>
-            </tr>
-        {% endfor %}
-    </table>
 
+    {% include 'AppBundle:Film:liste.html.twig' with { 'films': films } %}
     <p><a href="{{ path('film_ajouter') }}">Ajouter un film</a></p>
+
 {% endblock %}
