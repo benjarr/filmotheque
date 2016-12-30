@@ -18,7 +18,14 @@ class ActeurType extends AbstractType
         $builder
             ->add('nom')
             ->add('prenom')
-            ->add('dateNaissance', BirthdayType::class)
+            ->add('dateNaissance', BirthdayType::class, array(
+                'widget' => 'single_text',
+                'format' => 'dd-MM-yyyy',
+                'attr'   => array(
+                    'class' => 'form-control input-inline datepicker',
+                    'data-date-format' => 'DD-MM-YYYY',
+                ),
+            ))
             ->add('sexe', ChoiceType::class, array(
                 'choices' => array(
                     'Féminin'  => 'F',

@@ -1,0 +1,15 @@
+body {
+    padding-top    : 20px;
+    padding-bottom : 20px;
+}
+
+.navbar {
+    margin-bottom: 0;
+}
+
+.jumbotron {
+    padding-top: 40px;
+    padding-bottom: 10px;
+    text-align: center;
+    text-shadow: -1px 1px #ffffff;
+}

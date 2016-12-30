@@ -1,20 +1,35 @@
-<h1>Liste des acteurs</h1>
+{% extends 'base.html.twig' %}
 
-<table>
-    {% for a in acteurs %}
-        <tr>
-            <td>{{ a.nom }}</td>
-            <td>{{ a.prenom }}</td>
-            <td>{{ a.dateNaissance|date('d/m/Y') }}</td>
-            <td>{{ a.sexe }}</td>
-            <td><a href="{{ path('acteur_modifier', {'id': a.id}) }}">Modifier</a></td>
-            <td><a href="{{ path('acteur_supprimer', {'id': a.id}) }}">Supprimer</a></td>
-        </tr>
-    {% else %}
-        <tr>
-            <td>Aucun acteur n'a été trouvé.</td>
-        </tr>
-    {% endfor %}
-</table>
+{% block title %}Liste des acteurs{% endblock %}
 
-<p><a href="{{ path('acteur_ajouter') }}">Ajouter un acteur</a></p>
+{% block body %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th><i class="fa fa-user"></i> Acteur</th>
+                <th><i class="fa fa-birthday-cake"></i> Date de naissance</th>
+                <th><i class="fa fa-venus-mars"></i> Sexe</th>
+                <th><i class="fa fa-wrench"></i> Actions</th>
+            </tr>
+        </thead>
+        {% for a in acteurs %}
+        <tbody>
+            <tr>
+                <td>{{ a.prenom }} {{ a.nom }}</td>
+                <td>{{ a.dateNaissance|date('d/m/Y') }}</td>
+                <td>{{ a.sexe }}</td>
+                <td>
+                    <a href="{{ path('acteur_modifier', {'id': a.id}) }}"><i class="fa fa-edit" style="color: dimgrey;"></i></a>
+                    <a href="{{ path('acteur_supprimer', {'id': a.id}) }}"><i class="fa fa-trash" style="color: dimgrey;"></i></a>
+                </td>
+            </tr>
+        </tbody>
+        {% else %}
+            <tr>
+                <td>Aucun acteur n'a été trouvé.</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <p><a href="{{ path('acteur_ajouter') }}">Ajouter un acteur</a></p>
+{% endblock %}
